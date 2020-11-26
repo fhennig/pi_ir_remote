@@ -11,6 +11,10 @@ use std::thread;
 use std::time;
 use stoppable_thread::{spawn, StoppableHandle};
 
+/// Given a pin to read on and a handler for signal, this function
+/// polls the pin to receive IR pulses which are decoded into signals
+/// and then passed to the handler, when they occurr.  This is running
+/// in a dedicated thread.
 pub fn read_ir_remote(
     gpio_pin: u32,
     mut signal_handler: Box<dyn SignalHandler + Send + Sync>,
@@ -26,6 +30,9 @@ pub fn read_ir_remote(
     })
 }
 
+/// A struct that allows to detect IR pulses and signals by polling the state
+/// of an IR sensor periodically, calculating pulse lengths and decoding pulse
+/// sequences into signals.
 pub struct IRPulseReader {
     pulse_seq: VecDeque<Pulse>,
     handler: LineHandle,
@@ -48,6 +55,11 @@ impl IRPulseReader {
         })
     }
 
+    /// This function needs to be called periodically to detect pulses and signals.
+    /// An error is returned if the GPIO pin cannot be read.  The function returns
+    /// the decoded signal if the current transmission state resulted in a complete
+    /// signal.  If no signal was recognized or transmission is in progress, None is
+    /// returned.
     pub fn read_pulse(&mut self) -> Result<Option<Signal>, Box<dyn error::Error>> {
         thread::sleep(time::Duration::from_micros(100));
         let mut signal = None;
@@ -67,6 +79,12 @@ impl IRPulseReader {
         Ok(signal)
     }
 
+    /// This function handles the draining of the queue.  The queue of pulses
+    /// is drained whenever an unrecognized pulse is received (signal broken)
+    /// or the explicit start of a signal is announced with the start pulse.
+    /// Once 32 short/long pulses have been gathered, an attempt is made to 
+    /// decode the pulse sequence into a signal, which is returned if the
+    /// decoding is successful.
     fn handle_pulse(&mut self) -> Option<Signal> {
         let last_pulse = *self.pulse_seq.back().unwrap();
         if last_pulse == Pulse::Start || last_pulse == Pulse::Unrecognized {

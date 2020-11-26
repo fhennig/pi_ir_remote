@@ -1,6 +1,13 @@
+/// A signal is a button press that has been transmitted from the remote,
+/// but might also include things like "held down" to indicate that the 
+/// last pressed button is being held down.
+/// 
+/// On a technical level, a signal is encoded in pulses of different
+/// lengths.
 use crate::Pulse;
 use crate::pulse::seq_to_string;
 
+/// The different buttons on the remote, plus an "Unrecognized" signal.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum Signal {
     Power,
@@ -51,6 +58,8 @@ pub enum Signal {
 }
 
 impl Signal {
+    /// Attempts to match a pulse sequence to a signal.  All button codes
+    /// are 32 pulses long (32 bits).
     pub fn from_pulse_seq(pulse_seq: &Vec<Pulse>) -> Signal {
         let seq_as_str = seq_to_string(pulse_seq);
         match seq_as_str.as_str() {
