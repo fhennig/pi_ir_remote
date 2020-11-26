@@ -1,12 +1,9 @@
-use crate::pulse::seq_to_string;
 use crate::Pulse;
 use crate::Signal;
 use crate::SignalHandler;
 use gpio_cdev::{Chip, LineHandle, LineRequestFlags};
 use std::collections::VecDeque;
 use std::error;
-use std::fs::File;
-use std::io::prelude::*;
 use std::thread;
 use std::time;
 use stoppable_thread::{spawn, StoppableHandle};
