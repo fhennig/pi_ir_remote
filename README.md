@@ -5,6 +5,25 @@ infra red remote used commonly with LED strips.  When an IR sensor is
 connected to a GPIO pin, this crate can decode the IR signals into
 which button was pressed.
 
+## Usage
+
+This will read signals on GPIO 4 and print them:
+
+    use pi_ir_remote::read_ir_remote;
+    use pi_ir_remote::PrintSignalHandler;
+
+    fn main() {
+        let handler = PrintSignalHandler::new();
+        read_ir_remote(4, Box::new(handler));
+    }
+
+You can make your own signal handler by implementing the SignalHandler
+trait:
+
+    pub trait SignalHandler {
+        fn handle_signal(&mut self, signal: &Signal);
+    }
+
 ## How it works
 
 The IR remote sends pulse length encoded signals.  Among other special
