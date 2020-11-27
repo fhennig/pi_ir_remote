@@ -1,5 +1,7 @@
 # IR Remote Receiver
 
+![44-button IR remote](https://github.com/fhennig/pi_ir_remote/blob/master/remote.jpg?raw=true)
+
 This crate provides a signal decoder for the commonly found 44-button
 infra red remote used commonly with LED strips.  When an IR sensor is
 connected to a GPIO pin, this crate can decode the IR signals into
