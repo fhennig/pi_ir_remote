@@ -3,6 +3,10 @@ name = "pi_ir_remote"
 version = "0.1.0"
 authors = ["Felix hennig <mail@felixhennig.com>"]
 edition = "2018"
+description = "A crate to read infrared signals from a 44-button LED remote."
+readme = "README.md"
+repository = "https://github.com/fhennig/pi_ir_remote"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
