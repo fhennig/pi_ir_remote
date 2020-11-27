@@ -1,7 +1,7 @@
 # IR Remote Receiver
 
 <p align="center">
-    <img alt="44-button IR remote" src="https://github.com/fhennig/pi_ir_remote/blob/master/remote.jpg?raw=true"/>
+    <img alt="44-button IR remote" src="https://github.com/fhennig/pi_ir_remote/blob/master/pi_remote.png?raw=true"/>
 </p>
 
 This crate provides a signal decoder for the commonly found 44-button
