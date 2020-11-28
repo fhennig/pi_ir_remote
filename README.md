@@ -1,8 +1,8 @@
 # IR Remote Receiver
 
-<p align="center">
-    [crates.io](https://crates.io/crates/pi_ir_remote) - [docs.rs](https://docs.rs/pi_ir_remote/0.1.0/pi_ir_remote/) - [GitHub](https://github.com/fhennig/pi_ir_remote)
+[crates.io](https://crates.io/crates/pi_ir_remote) - [docs.rs](https://docs.rs/pi_ir_remote/0.1.0/pi_ir_remote/) - [GitHub](https://github.com/fhennig/pi_ir_remote)
 
+<p align="center">
     <img alt="44-button IR remote" src="https://github.com/fhennig/pi_ir_remote/blob/master/pi_remote.png?raw=true"/>
 </p>
 
