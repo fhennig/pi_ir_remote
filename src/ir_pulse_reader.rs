@@ -79,7 +79,7 @@ impl IRPulseReader {
     /// This function handles the draining of the queue.  The queue of pulses
     /// is drained whenever an unrecognized pulse is received (signal broken)
     /// or the explicit start of a signal is announced with the start pulse.
-    /// Once 32 short/long pulses have been gathered, an attempt is made to 
+    /// Once 32 short/long pulses have been gathered, an attempt is made to
     /// decode the pulse sequence into a signal, which is returned if the
     /// decoding is successful.
     fn handle_pulse(&mut self) -> Option<Signal> {
