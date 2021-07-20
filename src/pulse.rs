@@ -32,17 +32,3 @@ impl Pulse {
         }
     }
 }
-
-/// A helper function that converts a sequence of pulses to a string,
-/// a sequence of characters.
-pub fn seq_to_string(seq: &Vec<Pulse>) -> String {
-    let mut s = "".to_owned();
-    for p in seq {
-        if p == &Pulse::Short {
-            s += "S";
-        } else if p == &Pulse::Long {
-            s += "L";
-        }
-    }
-    s.to_string()
-}
